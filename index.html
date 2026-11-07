@@ -152,8 +152,9 @@ h1, h2, p { margin: 0; }
   justify-content: center;
   gap: 18px 22px;
   width: 100%;
-  animation: rise 0.6s 6.3s both;
+  animation: rise 0.6s 6.3s both, unlock 0.01s 6.3s both;
 }
+@keyframes unlock { from { visibility: hidden; } to { visibility: visible; } }
 .slot {
   flex: 1 1 240px;
   max-width: 300px;
@@ -1228,7 +1229,7 @@ h1, h2, p { margin: 0; }
   window.addEventListener('resize', function () { if (loose) flee(px, py); });
 
   choices.addEventListener('animationend', function (e) {
-    if (e.target === choices && current === 'test') ready = true;
+    if (e.target === choices && e.animationName === 'rise' && current === 'test') ready = true;
   });
 
   function resetTest() {
